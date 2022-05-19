@@ -1,6 +1,11 @@
-//  CHIAMATA FETCH 
+//  CHIAMATA FETCH  
 
-fetch('./data-file.json').then(responseCallBack, manageError).then(resultCallBack, manageError); 
+fetch('https://62860d1c96bccbf32d6e2b93.mockapi.io/dinosaurs')
+.then(responseCallBack)
+.then(resultCallBack)
+.catch(manageError);
+
+// fetch('./data_file.json').then(responseCallBack, manageError).then(resultCallBack, manageError); 
 
 // fetch('./data_file.json').then(responseCallBack).then(resultCallBack).catch(manageError);
 //  oggetto Promise "promette" che evento risultato possa arrivare, 
@@ -9,14 +14,45 @@ fetch('./data-file.json').then(responseCallBack, manageError).then(resultCallBac
 // accade evento risposta(fetch), e quindi il proprio evento risultato(then),  
 
 function responseCallBack (response){ 
-    console.log((response));
+    console.log(('response', response));
     return response.json()
 }
 //  response può essere gestita in due tipi: se JSON, possiamo chiedere a 
 //  risposta di tradurlo direttamente, tipo JSON.Parse();
 
 function resultCallBack (result){ 
-    console.log(result);
+    console.log('result', result); 
+    const array = convertResultInArrayOfDinosaurs(result); 
+    console.log('array', array); 
+    displayDinosaurs(result);
+} 
+
+function convertResultInArrayOfDinosaurs(result) {
+    
+    const arrayOfDinosaurs = result.map(obj => Dinosaur.fromObj(obj)); 
+    for (const obj of result) {
+        const dinosaur = Dinosaur.fromObj(obj);
+        arrayOfDinosaurs.push(dinosaur); 
+    } 
+
+    return arrayOfDinosaurs;
+}
+
+function displayDinosaurs(arrayOfDinosaurs) {
+    const arrayContainer = document.createElement('div'); 
+
+    for (let i = 0; i < arrayOfDinosaurs.length; i++) {
+        const dinosaur = arrayOfDinosaurs[i];
+        const dinosaurContainer = document.createElement('div'); 
+        const span = document.createElement('span'); 
+        const node = document.createTextNode(dinosaur.name + ' ' + dinosaur.family); 
+        
+        span.appendChild(node); 
+        dinosaurContainer.appendChild(span); 
+        arrayContainer.appendChild(dinosaurContainer);
+    } 
+
+    document.body.appendChild(arrayContainer);
 }
 
 function manageError(error) {
@@ -30,8 +66,8 @@ function manageError(error) {
 
 
 
-// //  tuttavia ha caricato i "dopo" dopo l'evento; perchè è più veloce 
-// //  se ne metto molti di più, il contrario 
+//  tuttavia ha caricato i "dopo" dopo l'evento; perchè è più veloce 
+//  se ne metto molti di più, il contrario 
 
 // setTimeout(logDopo, 0); 
 
@@ -45,4 +81,31 @@ function manageError(error) {
 
 // function logDopo() {
 //     console.log(('dopo'));
+// } 
+
+const ajax = new XMLHttpRequest(); 
+
+ajax.onReadyStateChange = onReadyStateChangeCallBack; 
+
+ajax.open('get', './data_file.json', this); 
+
+//  inizia la parte senza catch:
+// ajax.send(); 
+
+// function onReadyStateChangeCallBack() {
+//     if (this.readyState === 4) {
+//         console.log(this.readyState);
+//         if (this.status === 200) {
+//             console.log(this.responseText); 
+//             const array = JSON.parse(this.responseText); 
+//             console.log(array);
+//         } else {
+//             console.log('server not reached');
+//         }
+//     }
 // }
+
+function onReadyStateChangeCallBack() {
+    console.log(this.readyState);
+}
+

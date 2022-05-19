@@ -42,12 +42,35 @@ function displayDinosaurs(arrayOfDinosaurs) {
     const arrayContainer = document.createElement('div'); 
 
     for (let i = 0; i < arrayOfDinosaurs.length; i++) {
-        const dinosaur = arrayOfDinosaurs[i];
+        const dinosaur = arrayOfDinosaurs[i]; 
+
         const dinosaurContainer = document.createElement('div'); 
-        const span = document.createElement('span'); 
-        const node = document.createTextNode(dinosaur.name + ' ' + dinosaur.family); 
-        span.appendChild(node); 
-        dinosaurContainer.appendChild(span); 
+        
+        const dinosaurImgContainer = document.createElement('div');
+        const dinosaurImg = document.createElement('img');
+        dinosaurImgContainer.classList.add('dino-img');
+        dinosaurImgContainer.appendChild(dinosaurImg);
+
+        const dinosaurNameContainer = document.createElement('div');
+        const dinosaurNameNode = document.createTextNode('Name: ' + dinosaur.name + ';'); 
+        dinosaurNameContainer.classList.add('dino-txt');
+        dinosaurNameContainer.appendChild(dinosaurNameNode); 
+        
+        const dinosaurFamilyContainer = document.createElement('div');
+        const dinosaurFamilyNode = document.createTextNode('Family: ' + dinosaur.family + ';'); 
+        dinosaurFamilyContainer.classList.add('dino-txt');
+        dinosaurFamilyContainer.appendChild(dinosaurFamilyNode);
+
+        const dinosaurTimelineContainer = document.createElement('div');
+        const dinosaurTimelineNode = document.createTextNode('Timeline: ' + dinosaur.timeline + ' mya.' ); 
+        dinosaurTimelineContainer.classList.add('dino-txt');
+        dinosaurTimelineContainer.appendChild(dinosaurTimelineNode);
+
+        dinosaurContainer.appendChild(dinosaurImgContainer); 
+        dinosaurContainer.appendChild(dinosaurNameContainer);
+        dinosaurContainer.appendChild(dinosaurFamilyContainer);
+        dinosaurContainer.appendChild(dinosaurTimelineContainer);
+
         arrayContainer.appendChild(dinosaurContainer);
     } 
 

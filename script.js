@@ -23,8 +23,8 @@ function responseCallBack (response){
 function resultCallBack (result){ 
     console.log('result', result); 
     const array = convertResultInArrayOfDinosaurs(result); 
-    console.log('array', array); 
-    displayDinosaurs(result);
+    console.log('array', result); 
+    displayDinosaurs(array);
 } 
 
 function convertResultInArrayOfDinosaurs(result) {

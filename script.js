@@ -46,7 +46,6 @@ function displayDinosaurs(arrayOfDinosaurs) {
         const dinosaurContainer = document.createElement('div'); 
         const span = document.createElement('span'); 
         const node = document.createTextNode(dinosaur.name + ' ' + dinosaur.family); 
-        
         span.appendChild(node); 
         dinosaurContainer.appendChild(span); 
         arrayContainer.appendChild(dinosaurContainer);

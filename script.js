@@ -50,25 +50,24 @@ function displayDinosaurs(arrayOfDinosaurs) {
         const dinosaurImg = document.createElement('img');
         dinosaurImgContainer.classList.add('dino-img');
         dinosaurImgContainer.appendChild(dinosaurImg);
+        dinosaurContainer.appendChild(dinosaurImgContainer); 
 
         const dinosaurNameContainer = document.createElement('div');
         const dinosaurNameNode = document.createTextNode('Name: ' + dinosaur.name + ';'); 
         dinosaurNameContainer.classList.add('dino-txt');
         dinosaurNameContainer.appendChild(dinosaurNameNode); 
+        dinosaurContainer.appendChild(dinosaurNameContainer);
         
         const dinosaurFamilyContainer = document.createElement('div');
         const dinosaurFamilyNode = document.createTextNode('Family: ' + dinosaur.family + ';'); 
         dinosaurFamilyContainer.classList.add('dino-txt');
         dinosaurFamilyContainer.appendChild(dinosaurFamilyNode);
+        dinosaurContainer.appendChild(dinosaurFamilyContainer);
 
         const dinosaurTimelineContainer = document.createElement('div');
         const dinosaurTimelineNode = document.createTextNode('Timeline: ' + dinosaur.timeline + ' mya.' ); 
         dinosaurTimelineContainer.classList.add('dino-txt');
         dinosaurTimelineContainer.appendChild(dinosaurTimelineNode);
-
-        dinosaurContainer.appendChild(dinosaurImgContainer); 
-        dinosaurContainer.appendChild(dinosaurNameContainer);
-        dinosaurContainer.appendChild(dinosaurFamilyContainer);
         dinosaurContainer.appendChild(dinosaurTimelineContainer);
 
         arrayContainer.appendChild(dinosaurContainer);

@@ -28,6 +28,7 @@ html, body{
     width: 15vw; 
     height: fit-content;
     margin: 5px 40vw; 
+    padding: 2px;
     min-width: 90px;
     max-width: 215px; 
     text-align: center;

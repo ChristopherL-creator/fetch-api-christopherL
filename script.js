@@ -1,9 +1,18 @@
 //  CHIAMATA FETCH  
+const responseCallBack = (response) => response.json(); 
+
+const resultCallBack = (result) => displayDinosaurs(convertResultInArrayOfDinosaurs(result));  
+
+//  fromObj prende un oggetto e ne crea classe con proprietà dell'oggetto. classe ha funzione in get, 
+// che da date of birth; funzione in set, con cui settare dateofbirth, funzione get per daystobirth;
+const convertResultInArrayOfDinosaurs = (result) => result.map(obj => Dinosaur.fromObj(obj));
+
+const catchError = (error) => console.log(error);
 
 fetch('https://62860d1c96bccbf32d6e2b93.mockapi.io/dinosaurs')
 .then(responseCallBack)
 .then(resultCallBack)
-.catch(manageError);
+.catch(catchError);
 
 // fetch('./data_file.json').then(responseCallBack, manageError).then(resultCallBack, manageError); 
 
@@ -13,30 +22,32 @@ fetch('https://62860d1c96bccbf32d6e2b93.mockapi.io/dinosaurs')
 //  accade anche primse di then: 
 // accade evento risposta(fetch), e quindi il proprio evento risultato(then),  
 
-function responseCallBack (response){ 
-    console.log(('response', response));
-    return response.json()
-}
+// function responseCallBack (response){ 
+//     console.log(('response', response));
+//     return response.json()
+// } 
+
 //  response può essere gestita in due tipi: se JSON, possiamo chiedere a 
 //  risposta di tradurlo direttamente, tipo JSON.Parse();
 
-function resultCallBack (result){ 
-    console.log('result', result); 
-    const array = convertResultInArrayOfDinosaurs(result); 
-    console.log('array', result); 
-    displayDinosaurs(array);
-} 
+// function resultCallBack (result){ 
+//     // console.log('result', result); 
+//     const array = convertResultInArrayOfDinosaurs(result); 
+//     // console.log('array', result); 
+//     displayDinosaurs(array);
+// } 
 
-function convertResultInArrayOfDinosaurs(result) {
+
+// function convertResultInArrayOfDinosaurs(result) {
     
-    const arrayOfDinosaurs = result.map(obj => Dinosaur.fromObj(obj)); 
-    for (const obj of result) {
-        const dinosaur = Dinosaur.fromObj(obj);
-        arrayOfDinosaurs.push(dinosaur); 
-    } 
+//     const arrayOfDinosaurs = result.map(obj => Dinosaur.fromObj(obj)); 
+//     for (const obj of result) {
+//         const dinosaur = Dinosaur.fromObj(obj);
+//         arrayOfDinosaurs.push(dinosaur); 
+//     } 
 
-    return arrayOfDinosaurs;
-}
+//     return arrayOfDinosaurs;
+// }
 
 function displayDinosaurs(arrayOfDinosaurs) {
     const arrayContainer = document.createElement('div'); 
@@ -76,9 +87,10 @@ function displayDinosaurs(arrayOfDinosaurs) {
     document.body.appendChild(arrayContainer);
 }
 
-function manageError(error) {
-    console.log(error);
-}
+// function manageError(error) {
+//     console.log(error);
+// } 
+//  sostituisce manageError:
 //  chiamo server, e ricevo response code di risposta; 
 
 // console.log('prima');

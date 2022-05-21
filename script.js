@@ -1,18 +1,18 @@
 //  CHIAMATA FETCH  
 const responseCallBack = (response) => response.json(); 
 
-const resultCallBack = (result) => displayDinosaurs(convertResultInArrayOfDinosaurs(result));  
+// const resultCallBack = (result) => displayDinosaurs(convertResultInArrayOfDinosaurs(result));  
 
 //  fromObj prende un oggetto e ne crea classe con proprietà dell'oggetto. classe ha funzione in get, 
 // che da date of birth; funzione in set, con cui settare dateofbirth, funzione get per daystobirth;
 const convertResultInArrayOfDinosaurs = (result) => result.map(obj => Dinosaur.fromObj(obj));
 
-const catchError = (error) => console.log(error);
+// const catchError = (error) => console.log(error);
 
-fetch('https://62860d1c96bccbf32d6e2b93.mockapi.io/dinosaurs')
-.then(responseCallBack)
-.then(resultCallBack)
-.catch(catchError);
+// fetch('https://62860d1c96bccbf32d6e2b93.mockapi.io/dinosaurs')
+// .then(responseCallBack)
+// .then(resultCallBack)
+// .catch(catchError);
 
 // fetch('./data_file.json').then(responseCallBack, manageError).then(resultCallBack, manageError); 
 
@@ -49,43 +49,43 @@ fetch('https://62860d1c96bccbf32d6e2b93.mockapi.io/dinosaurs')
 //     return arrayOfDinosaurs;
 // }
 
-function displayDinosaurs(arrayOfDinosaurs) {
-    const arrayContainer = document.createElement('div'); 
+// function displayDinosaurs(arrayOfDinosaurs) {
+//     const arrayContainer = document.createElement('div'); 
 
-    for (let i = 0; i < arrayOfDinosaurs.length; i++) {
-        const dinosaur = arrayOfDinosaurs[i]; 
+//     for (let i = 0; i < arrayOfDinosaurs.length; i++) {
+//         const dinosaur = arrayOfDinosaurs[i]; 
 
-        const dinosaurContainer = document.createElement('div'); 
+//         const dinosaurContainer = document.createElement('div'); 
         
-        const dinosaurImgContainer = document.createElement('div');
-        const dinosaurImg = document.createElement('img');
-        dinosaurImgContainer.classList.add('dino-img');
-        dinosaurImgContainer.appendChild(dinosaurImg);
-        dinosaurContainer.appendChild(dinosaurImgContainer); 
+//         const dinosaurImgContainer = document.createElement('div');
+//         const dinosaurImg = document.createElement('img');
+//         dinosaurImgContainer.classList.add('dino-img');
+//         dinosaurImgContainer.appendChild(dinosaurImg);
+//         dinosaurContainer.appendChild(dinosaurImgContainer); 
 
-        const dinosaurNameContainer = document.createElement('div');
-        const dinosaurNameNode = document.createTextNode('Name: ' + dinosaur.name + ';'); 
-        dinosaurNameContainer.classList.add('dino-txt');
-        dinosaurNameContainer.appendChild(dinosaurNameNode); 
-        dinosaurContainer.appendChild(dinosaurNameContainer);
+//         const dinosaurNameContainer = document.createElement('div');
+//         const dinosaurNameNode = document.createTextNode('Name: ' + dinosaur.name + ';'); 
+//         dinosaurNameContainer.classList.add('dino-txt');
+//         dinosaurNameContainer.appendChild(dinosaurNameNode); 
+//         dinosaurContainer.appendChild(dinosaurNameContainer);
         
-        const dinosaurFamilyContainer = document.createElement('div');
-        const dinosaurFamilyNode = document.createTextNode('Family: ' + dinosaur.family + ';'); 
-        dinosaurFamilyContainer.classList.add('dino-txt');
-        dinosaurFamilyContainer.appendChild(dinosaurFamilyNode);
-        dinosaurContainer.appendChild(dinosaurFamilyContainer);
+//         const dinosaurFamilyContainer = document.createElement('div');
+//         const dinosaurFamilyNode = document.createTextNode('Family: ' + dinosaur.family + ';'); 
+//         dinosaurFamilyContainer.classList.add('dino-txt');
+//         dinosaurFamilyContainer.appendChild(dinosaurFamilyNode);
+//         dinosaurContainer.appendChild(dinosaurFamilyContainer);
 
-        const dinosaurTimelineContainer = document.createElement('div');
-        const dinosaurTimelineNode = document.createTextNode('Timeline: ' + dinosaur.timeline + ' mya.' ); 
-        dinosaurTimelineContainer.classList.add('dino-txt');
-        dinosaurTimelineContainer.appendChild(dinosaurTimelineNode);
-        dinosaurContainer.appendChild(dinosaurTimelineContainer);
+//         const dinosaurTimelineContainer = document.createElement('div');
+//         const dinosaurTimelineNode = document.createTextNode('Timeline: ' + dinosaur.timeline + ' mya.' ); 
+//         dinosaurTimelineContainer.classList.add('dino-txt');
+//         dinosaurTimelineContainer.appendChild(dinosaurTimelineNode);
+//         dinosaurContainer.appendChild(dinosaurTimelineContainer);
 
-        arrayContainer.appendChild(dinosaurContainer);
-    } 
+//         arrayContainer.appendChild(dinosaurContainer);
+//     } 
 
-    document.body.appendChild(arrayContainer);
-}
+//     document.body.appendChild(arrayContainer);
+// }
 
 // function manageError(error) {
 //     console.log(error);
@@ -140,5 +140,53 @@ ajax.open('get', './data_file.json', this);
 
 function onReadyStateChangeCallBack() {
     console.log(this.readyState);
+} 
+
+const displayDinosaurs = (arrayOfDinosaurs) {
+    const arrayContainer = document.createElement('div'); 
+
+    for (let i = 0; i < arrayOfDinosaurs.length; i++) {
+        const dinosaur = arrayOfDinosaurs[i]; 
+
+        const dinosaurContainer = document.createElement('div'); 
+        
+        const dinosaurImgContainer = document.createElement('div');
+        const dinosaurImg = document.createElement('img');
+        dinosaurImgContainer.classList.add('dino-img');
+        dinosaurImgContainer.appendChild(dinosaurImg);
+        dinosaurContainer.appendChild(dinosaurImgContainer); 
+
+        const dinosaurNameContainer = document.createElement('div');
+        const dinosaurNameNode = document.createTextNode('Name: ' + dinosaur.name + ';'); 
+        dinosaurNameContainer.classList.add('dino-txt');
+        dinosaurNameContainer.appendChild(dinosaurNameNode); 
+        dinosaurContainer.appendChild(dinosaurNameContainer);
+        
+        const dinosaurFamilyContainer = document.createElement('div');
+        const dinosaurFamilyNode = document.createTextNode('Family: ' + dinosaur.family + ';'); 
+        dinosaurFamilyContainer.classList.add('dino-txt');
+        dinosaurFamilyContainer.appendChild(dinosaurFamilyNode);
+        dinosaurContainer.appendChild(dinosaurFamilyContainer);
+
+        const dinosaurTimelineContainer = document.createElement('div');
+        const dinosaurTimelineNode = document.createTextNode('Timeline: ' + dinosaur.timeline + ' mya.' ); 
+        dinosaurTimelineContainer.classList.add('dino-txt');
+        dinosaurTimelineContainer.appendChild(dinosaurTimelineNode);
+        dinosaurContainer.appendChild(dinosaurTimelineContainer);
+
+        arrayContainer.appendChild(dinosaurContainer);
+    } 
+
+    document.body.appendChild(arrayContainer);
 }
 
+const resultCallBack = (result) => displayDinosaurs(convertResultInArrayOfDinosaurs(result));  
+
+const catchError = (error) => console.log(error);
+
+const initApp = () => fetch('https://62860d1c96bccbf32d6e2b93.mockapi.io/dinosaurs')
+                     .then(responseCallBack)
+                     .then(resultCallBack)
+                     .catch(catchError); 
+
+initApp();

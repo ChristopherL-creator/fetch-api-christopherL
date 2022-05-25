@@ -142,7 +142,7 @@ function onReadyStateChangeCallBack() {
     console.log(this.readyState);
 } 
 
-const displayDinosaurs = (arrayOfDinosaurs) {
+const displayDinosaurs = (arrayOfDinosaurs) = {
     const arrayContainer = document.createElement('div'); 
 
     for (let i = 0; i < arrayOfDinosaurs.length; i++) {
